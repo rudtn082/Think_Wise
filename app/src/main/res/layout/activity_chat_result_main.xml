@@ -17,10 +17,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="대 화 내 용 분 석 결 과"
+            android:text="대  화  내  용  분  석  결  과"
             android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold"/>
     </android.support.v7.widget.Toolbar>
+
+    <ListView
+        android:id="@+id/listview1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"/>
 
 </android.support.constraint.ConstraintLayout>

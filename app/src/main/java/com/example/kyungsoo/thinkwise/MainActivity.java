@@ -1,10 +1,15 @@
 package com.example.kyungsoo.thinkwise;
 
+import android.Manifest;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,18 +17,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import org.w3c.dom.Node;
+
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public static int PICK_FILE = 1; // 1이면 파일선택 activity 실행
+    ArrayList<String> a = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 
     public void file_select(View view) {
@@ -66,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
             while ((line = reader.readLine()) != null) {
                 builder.append(line);
+                builder.append("\n");
             }
 
         } catch (IOException e) {
