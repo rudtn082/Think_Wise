@@ -1,35 +1,18 @@
 package com.example.kyungsoo.thinkwise;
 
-import android.Manifest;
+
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
-
-import org.w3c.dom.Node;
-
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public static int PICK_FILE = 1; // 1이면 파일선택 activity 실행
-    ArrayList<String> a = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,46 +32,45 @@ public class MainActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
+                // 파일선택 Activity
                 case 1:
-                    // 파일 선택
                     Uri uri = data.getData();
                     String fileContent = readTextFile(uri);
+                    Intent chat_result_main = new Intent(MainActivity.this, chat_result_main.class);
+                    chat_result_main.putExtra("fileContent", fileContent);
 
                     // chat_result_main 열기
-                    Intent chat_result_main = new Intent(MainActivity.this, chat_result_main.class);
-                    chat_result_main.putExtra("fileContent",String.valueOf(fileContent));
                     startActivity(chat_result_main);
                     break;
                 default:
                     break;
             }
         } else {
-            Toast.makeText(this, "파일 선택 에러", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "파일이 선택되지 않았습니다.", Toast.LENGTH_LONG).show();
         }
     }
 
     // 파일 읽기 메소드
-    private String readTextFile(Uri uri){
+    private String readTextFile(Uri uri) {
         BufferedReader reader = null;
         StringBuilder builder = new StringBuilder();
         try {
             reader = new BufferedReader(new InputStreamReader(getContentResolver().openInputStream(uri)));
             String line = "";
-
             while ((line = reader.readLine()) != null) {
                 builder.append(line);
                 builder.append("\n");
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (reader != null){
-                    try {
-                        reader.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    Toast.makeText(getApplicationContext(), "대화내용 읽기 오류", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
             }
         }
         return builder.toString();
