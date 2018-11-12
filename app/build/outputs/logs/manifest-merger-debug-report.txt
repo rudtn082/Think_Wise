@@ -90,6 +90,10 @@ ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:
 		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:21:13-49
 	android:name
 		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:20:13-45
+uses-permission#android.permission.INTERNET
+ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:23:5-66
+	android:name
+		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:23:22-64
 uses-sdk
 INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml

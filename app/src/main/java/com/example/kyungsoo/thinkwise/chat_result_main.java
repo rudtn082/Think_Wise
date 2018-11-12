@@ -5,19 +5,30 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import org.json.JSONException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class chat_result_main extends AppCompatActivity {
     private Handler mHandler; // postDelayed사용을 위한 handler
     private ProgressDialog mProgressDialog; // 프로그레스바 변수
     static final String[] LIST_MENU = {"LIST1", "LIST2", "LIST3", "LIST4", "LIST5", "LIST6", "LIST7", "LIST8"} ;
+    String temp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_result_main);
+
 
         mHandler = new Handler();
 
@@ -45,6 +56,20 @@ public class chat_result_main extends AppCompatActivity {
                         } finally {
                             // 프로그레스 종료
                                         mProgressDialog.dismiss();
+
+                            // lastPOST
+                            Thread threadRecog = new Thread(new Runnable() {
+                                public void run() {
+                                    try {
+                                        lastPOST();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                            threadRecog.start();
                         }
                     }
                 }, 500);
@@ -53,6 +78,8 @@ public class chat_result_main extends AppCompatActivity {
 
         // 리스트뷰 생성
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, LIST_MENU) ;
+
+
 
         ListView listview = (ListView) findViewById(R.id.listview1) ;
         listview.setAdapter(adapter) ;
@@ -77,9 +104,10 @@ public class chat_result_main extends AppCompatActivity {
                     whole_chat_content = whole_chat_content.concat(split_ws[j]);
                     whole_chat_content = whole_chat_content.concat(" ");
                 }
-                whole_chat_content = whole_chat_content.concat("\n");
+                 whole_chat_content = whole_chat_content.concat("\n");
             }
         }
+        temp = whole_chat_content;
     }
 
     // 뒤로가기 버튼 눌렀을 때
@@ -87,5 +115,54 @@ public class chat_result_main extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    // JSON형태로 받아오기!!!
+    public void lastPOST() throws IOException, JSONException {
+        //byte[] strs = temp.getBytes("UTF-8");
+        String a = new String(temp.getBytes("UTF-8"),"UTF-8");
+        String input = "key=3249915959609597769&text=" + a;
+
+
+        try{
+            /* set up */
+            URL naver = new URL("http://api.adams.ai/datamixiApi/keywordextract");
+            HttpURLConnection urlConn = (HttpURLConnection)naver.openConnection();
+            urlConn.setDoOutput(true);
+            urlConn.setDoInput(true);
+            urlConn.setRequestProperty("Accept", "application/json");
+            urlConn.setRequestMethod("POST");
+
+            Log.i("readStream", "1");
+            /* write */
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(urlConn.getOutputStream()));
+            bw.write(input);
+            bw.flush();
+            bw.close();
+            Log.i("readStream", "3");
+
+            // 200 성공코드
+            // 400 문법에러
+            BufferedReader br;
+            if (urlConn.getResponseCode() == 200) {
+                // 성공시 처리
+                Log.i("readStream", String.valueOf(urlConn.getResponseCode()));
+                /* read */
+                br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+            }else{
+                // 실패시 처리
+                Log.i("readStream", String.valueOf(urlConn.getResponseCode()));
+                /* read */
+                br = new BufferedReader(new InputStreamReader(urlConn.getErrorStream()));
+            }
+            String inputLine;
+            while((inputLine = br.readLine()) != null){
+                Log.i("readStream", inputLine);
+            }
+            br.close();
+        }
+        catch (Exception e) {
+            Log.i("readStream", e.toString());
+        }
     }
 }

@@ -20,5 +20,5 @@
             android:name=".chat_result_main"
             android:screenOrientation="portrait" />
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
