@@ -9,7 +9,13 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import org.json.JSONException;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -119,9 +125,7 @@ public class chat_result_main extends AppCompatActivity {
 
     // JSON형태로 받아오기!!!
     public void lastPOST() throws IOException, JSONException {
-        //byte[] strs = temp.getBytes("UTF-8");
-        String a = new String(temp.getBytes("UTF-8"),"UTF-8");
-        String input = "key=3249915959609597769&text=" + a;
+        String input = "key=3249915959609597769&text=" + temp;
 
 
         try{
@@ -130,7 +134,7 @@ public class chat_result_main extends AppCompatActivity {
             HttpURLConnection urlConn = (HttpURLConnection)naver.openConnection();
             urlConn.setDoOutput(true);
             urlConn.setDoInput(true);
-            urlConn.setRequestProperty("Accept", "application/json");
+            urlConn.setRequestProperty("Accept", "application/json;charset=UTF-8");
             urlConn.setRequestMethod("POST");
 
             Log.i("readStream", "1");
@@ -155,10 +159,29 @@ public class chat_result_main extends AppCompatActivity {
                 /* read */
                 br = new BufferedReader(new InputStreamReader(urlConn.getErrorStream()));
             }
+
             String inputLine;
             while((inputLine = br.readLine()) != null){
+                try {
+                    JSONParser jsonParser = new JSONParser();
+                    //JSONObject jsonObject = JSONObject.fromObject(inputLine);
+                    JSONObject jsonObject = (JSONObject)jsonParser.parse(inputLine);
+                    Log.i("readStream", "5555");
+                    JSONArray memberArray = (JSONArray)jsonObject.get("return_object");
+
+                    Log.i("readStream", "111111");
+                    for(int i=0 ; i < memberArray.size() ; i++){
+                        JSONObject tempObj = (JSONObject) memberArray.get(i);
+                        Log.i("readStream", ""+(i+1)+"번째 멤버의 term: "+tempObj.get("term"));
+                        Log.i("readStream", ""+(i+1)+"번째 멤버의 weight : "+tempObj.get("weight"));
+                        System.out.println("----------------------------");
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 Log.i("readStream", inputLine);
             }
+
             br.close();
         }
         catch (Exception e) {
