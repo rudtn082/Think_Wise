@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import java.io.BufferedReader;
@@ -27,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        Log.i("whyexit", "on Destroy - mainactivity");
+        super.onDestroy();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -37,10 +44,24 @@ public class MainActivity extends AppCompatActivity {
                     Uri uri = data.getData();
                     String fileContent = readTextFile(uri);
                     Intent chat_result_main = new Intent(MainActivity.this, chat_result_main.class);
-                    chat_result_main.putExtra("fileContent", fileContent);
+
+
+                    // 20만 글자 이상일 때
+                    if(fileContent.length() > 200000) {
+                        for(int i = 0; i <= fileContent.length()/200000; i++) {
+                            Log.e("whyexit", "dd");
+                            fileContent.substring(200000 * i);
+                            fileContent.substring(200001 * i, fileContent.length()%(200000 * i));
+                            chat_result_main.putExtra("fileContent", fileContent);
+                        }
+                    }
+                    else {
+                        chat_result_main.putExtra("fileContent", fileContent);
+                    }
 
                     // chat_result_main 열기
                     startActivity(chat_result_main);
+                    Log.i("whyexit", "start subactivity");
                     break;
                 default:
                     break;

@@ -32,6 +32,7 @@ public class chat_result_main extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("whyexit", "create complete");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_result_main);
 
@@ -53,6 +54,7 @@ public class chat_result_main extends AppCompatActivity {
                     {
                         try
                         {
+                            Log.i("whyexit", "split start");
                             chat_split();
                         }
                         catch ( Exception e )
@@ -98,6 +100,7 @@ public class chat_result_main extends AppCompatActivity {
         // 라인으로 split하기
         String[] split_line = fileContent.split("\n");
         String whole_chat_content = "";
+        Log.v("whyexit", String.valueOf(split_line.length));
 
         // 단어로 split해서 대화 내용만 합치기
         for(int i = 2; i < split_line.length; i++) {
@@ -114,13 +117,6 @@ public class chat_result_main extends AppCompatActivity {
             }
         }
         temp = whole_chat_content;
-    }
-
-    // 뒤로가기 버튼 눌렀을 때
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
     }
 
     // JSON형태로 받아오기!!!
@@ -187,5 +183,19 @@ public class chat_result_main extends AppCompatActivity {
         catch (Exception e) {
             Log.i("readStream", e.toString());
         }
+    }
+
+    // 뒤로가기 버튼 눌렀을 때
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.i("whyexit", "back pressed..exit");
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.i("whyexit", "on Destroy - subactivity");
+        super.onDestroy();
     }
 }
