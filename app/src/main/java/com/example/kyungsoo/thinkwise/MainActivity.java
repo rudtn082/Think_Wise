@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
+    private static String Contentstirng= "";
     public static int PICK_FILE = 1; // 1이면 파일선택 activity 실행
 
     @Override
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        Log.i("whyexit", "on Destroy - mainactivity");
+        Log.i("LOG", "on Destroy - mainactivity");
         super.onDestroy();
     }
 
@@ -45,23 +46,12 @@ public class MainActivity extends AppCompatActivity {
                     String fileContent = readTextFile(uri);
                     Intent chat_result_main = new Intent(MainActivity.this, chat_result_main.class);
 
-
-                    // 20만 글자 이상일 때
-                    if(fileContent.length() > 200000) {
-                        for(int i = 0; i <= fileContent.length()/200000; i++) {
-                            Log.e("whyexit", "dd");
-                            fileContent.substring(200000 * i);
-                            fileContent.substring(200001 * i, fileContent.length()%(200000 * i));
-                            chat_result_main.putExtra("fileContent", fileContent);
-                        }
-                    }
-                    else {
-                        chat_result_main.putExtra("fileContent", fileContent);
-                    }
+                    // 대화내용 저장
+                    setContentstirng(fileContent);
 
                     // chat_result_main 열기
                     startActivity(chat_result_main);
-                    Log.i("whyexit", "start subactivity");
+                    Log.i("LOG", "start subactivity");
                     break;
                 default:
                     break;
@@ -89,11 +79,21 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    Toast.makeText(getApplicationContext(), "대화내용 읽기 오류", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "파일읽기 오류", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
             }
         }
         return builder.toString();
+    }
+
+    // 대화내용 저장
+    public void setContentstirng(String Contentstirng) {
+        this.Contentstirng = Contentstirng;
+    }
+
+    // 대화내용 불러오기
+    public static String getContentstring() {
+        return Contentstirng;
     }
 }
