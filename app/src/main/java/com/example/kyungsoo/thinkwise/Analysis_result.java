@@ -15,6 +15,7 @@ public class Analysis_result extends AppCompatActivity {
 
         // 뒤로가기 버튼 생성
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

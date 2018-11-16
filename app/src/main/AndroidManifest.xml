@@ -7,7 +7,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/thinkwise"
-        android:label=""
+        android:label="Think Wise"
         android:roundIcon="@mipmap/thinkwise_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

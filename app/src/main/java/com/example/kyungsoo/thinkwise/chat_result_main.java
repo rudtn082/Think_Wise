@@ -44,6 +44,7 @@ public class chat_result_main extends AppCompatActivity {
 
         // 뒤로가기 버튼 생성
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

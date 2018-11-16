@@ -15,7 +15,7 @@
         android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         android:debuggable="true"
         android:icon="@mipmap/thinkwise"
-        android:label=""
+        android:label="Think Wise"
         android:roundIcon="@mipmap/thinkwise_round"
         android:supportsRtl="true"
         android:testOnly="true"
