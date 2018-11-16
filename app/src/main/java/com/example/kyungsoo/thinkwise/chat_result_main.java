@@ -75,9 +75,6 @@ public class chat_result_main extends AppCompatActivity {
                             Log.e("LOG",e.toString());
                             Toast.makeText(getApplicationContext(), "내용분석 오류", Toast.LENGTH_LONG).show();
                         } finally {
-                            // 프로그레스 종료
-                            mProgressDialog.dismiss();
-
                             // lastPOST
                             Thread threadRecog = new Thread(new Runnable() {
                                 public void run() {
@@ -94,10 +91,10 @@ public class chat_result_main extends AppCompatActivity {
 
                             // 분석이 끝나면 ListView를 업데이트
                             do {
+                                // 프로그레스 종료
+                                mProgressDialog.dismiss();
                                 adapter.notifyDataSetChanged();
-                                Log.e("LOG", "33");
                             }while (threadRecog.getState() != Thread.State.TERMINATED);
-                            Log.e("LOG", "44");
                         }
                     }
                 }, 500);
