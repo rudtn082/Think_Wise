@@ -1,10 +1,13 @@
 package com.example.kyungsoo.thinkwise;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -78,6 +81,7 @@ public class chat_result_main extends AppCompatActivity {
                             });
                             threadRecog.start();
 
+                            // 분석이 끝나면 ListView를 업데이트
                             do {
                                 adapter.notifyDataSetChanged();
                             }while (threadRecog.getState() != Thread.State.TERMINATED);
@@ -87,28 +91,27 @@ public class chat_result_main extends AppCompatActivity {
             }
         } );
 
+
+        // ListView 생성
         LIST_MENU = new ArrayList<>(); // 리스트 뷰 변수
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, LIST_MENU) ;
         listview = (ListView)findViewById(R.id.listview1) ; // 리스트뷰
         listview.setAdapter(adapter);
 
 
-//        // ListView 객체의 특정 아이템 클릭시 처리 추가 -> 아직안함
-//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//
-//                // 8. 클릭한 아이템의 문자열을 가져와서
-//                String selected_item = (String)adapterView.getItemAtPosition(position);
-//
-//                // 9. 해당 아이템을 ArrayList 객체에서 제거하고
-//                LIST_MENU.remove(selected_item);
-//
-//                // 10. 어댑터 객체에 변경 내용을 반영시켜줘야 에러가 발생하지 않습니다.
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
+        // ListView 객체의 특정 아이템 클릭시 처리 추가
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+                // 클릭한 아이템의 문자열을 가져와서
+                String selected_item = (String)adapterView.getItemAtPosition(position);
+
+                Intent Analysis_result = new Intent(getApplicationContext(), com.example.kyungsoo.thinkwise.Analysis_result.class);
+                startActivity(Analysis_result);
+            }
+        });
     }
 
     private void chat_split() {
@@ -194,7 +197,7 @@ public class chat_result_main extends AppCompatActivity {
                         for(int i=0 ; i <= 20; i++){
                             JSONObject tempObj = (JSONObject) memberArray.get(i);
                             String[] tempstr = tempObj.get("term").toString().split("\\|");
-                            LIST_MENU.add(tempstr[0] + "        /        빈도수 : " + tempstr[1].substring(0,5));
+                            LIST_MENU.add(tempstr[0] + "                빈도수 : " + tempstr[1].substring(0,5));
                         }
                     }
                     // 결과값이 20개 보다 적을 경우
@@ -202,7 +205,7 @@ public class chat_result_main extends AppCompatActivity {
                         for(int i=0 ; i < memberArray.size(); i++){
                             JSONObject tempObj = (JSONObject) memberArray.get(i);
                             String[] tempstr = tempObj.get("term").toString().split("\\|");
-                            LIST_MENU.add(tempstr[0] + "        /        빈도수 : " + tempstr[1].substring(0,5));
+                            LIST_MENU.add(tempstr[0] + "                빈도수 : " + tempstr[1].substring(0,5));
                         }
                     }
                 } catch (ParseException e) {
