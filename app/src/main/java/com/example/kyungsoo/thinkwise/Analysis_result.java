@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class Analysis_result extends AppCompatActivity {
 
@@ -19,6 +20,9 @@ public class Analysis_result extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        String data_string = getIntent().getStringExtra("data_string");
+        Toast.makeText(this, data_string, Toast.LENGTH_SHORT).show();
 
     }
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -28,11 +29,12 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class chat_result_main extends AppCompatActivity {
-    ArrayList<String> LIST_MENU; // 리스트 뷰 변수
+    ArrayList<HashMap<String,String>> LIST_MENU; // 리스트 뷰 변수
     ListView listview; // 리스트뷰
-    ArrayAdapter<String> adapter; // 리스트뷰 어댑터
+    SimpleAdapter adapter; // 리스트뷰 어댑터
     private Handler mHandler; // postDelayed사용을 위한 handler
     private ProgressDialog mProgressDialog; // 프로그레스바 변수
     String temp = null;
@@ -93,7 +95,9 @@ public class chat_result_main extends AppCompatActivity {
                             // 분석이 끝나면 ListView를 업데이트
                             do {
                                 adapter.notifyDataSetChanged();
+                                Log.e("LOG", "33");
                             }while (threadRecog.getState() != Thread.State.TERMINATED);
+                            Log.e("LOG", "44");
                         }
                     }
                 }, 500);
@@ -102,8 +106,10 @@ public class chat_result_main extends AppCompatActivity {
 
 
         // ListView 생성
-        LIST_MENU = new ArrayList<>(); // 리스트 뷰 변수
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, LIST_MENU) ;
+        LIST_MENU = new ArrayList<HashMap<String, String>>();
+
+        adapter = new SimpleAdapter(this, LIST_MENU, android.R.layout.simple_list_item_2,
+                new String[] {"item1", "item2"}, new int[] {android.R.id.text1, android.R.id.text2});
         listview = (ListView)findViewById(R.id.listview1) ; // 리스트뷰
         listview.setAdapter(adapter);
 
@@ -114,10 +120,15 @@ public class chat_result_main extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
+                HashMap<String, String> item = (HashMap<String, String>) adapterView.getItemAtPosition(position);
+                String selected_item = item.get("item1");
+
                 // 클릭한 아이템의 문자열을 가져와서
-                String selected_item = (String)adapterView.getItemAtPosition(position);
+                //String selected_item = (String)adapterView.getItemAtPosition(position);
+
 
                 Intent Analysis_result = new Intent(getApplicationContext(), com.example.kyungsoo.thinkwise.Analysis_result.class);
+                Analysis_result.putExtra("data_string", selected_item);
                 startActivity(Analysis_result);
             }
         });
@@ -206,7 +217,11 @@ public class chat_result_main extends AppCompatActivity {
                         for(int i=0 ; i <= 20; i++){
                             JSONObject tempObj = (JSONObject) memberArray.get(i);
                             String[] tempstr = tempObj.get("term").toString().split("\\|");
-                            LIST_MENU.add(tempstr[0] + "                빈도수 : " + tempstr[1].substring(0,5));
+
+                            HashMap<String,String> item = new HashMap<>();
+                            item.put("item1", tempstr[0]);
+                            item.put("item2", "빈도수 : " + tempstr[1].substring(0,5));
+                            LIST_MENU.add(item);
                         }
                     }
                     // 결과값이 20개 보다 적을 경우
@@ -214,7 +229,11 @@ public class chat_result_main extends AppCompatActivity {
                         for(int i=0 ; i < memberArray.size(); i++){
                             JSONObject tempObj = (JSONObject) memberArray.get(i);
                             String[] tempstr = tempObj.get("term").toString().split("\\|");
-                            LIST_MENU.add(tempstr[0] + "                빈도수 : " + tempstr[1].substring(0,5));
+
+                            HashMap<String,String> item = new HashMap<>();
+                            item.put("item1", tempstr[0]);
+                            item.put("item2", "빈도수 : " + tempstr[1].substring(0,5));
+                            LIST_MENU.add(item);
                         }
                     }
                 } catch (ParseException e) {
