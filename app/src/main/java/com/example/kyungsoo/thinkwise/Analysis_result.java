@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -23,12 +25,16 @@ import java.net.URL;
 import java.util.HashMap;
 
 public class Analysis_result extends AppCompatActivity {
+    Button Topic_Button, Trend_Button;
     String data_string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analysis_result);
+
+        Topic_Button = (Button) findViewById(R.id.Topic_Button);
+        Trend_Button = (Button) findViewById(R.id.Trend_Button);
 
         // 뒤로가기 버튼 생성
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -39,11 +45,10 @@ public class Analysis_result extends AppCompatActivity {
 
         data_string = getIntent().getStringExtra("data_string");
 
-        // lastPOST
+        // 연관 주제어 분석
         Thread threadRecog = new Thread(new Runnable() {
             public void run() {
                 try {
-                    // 연관 주제어 분석
                     Topic_anal(data_string);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -53,6 +58,49 @@ public class Analysis_result extends AppCompatActivity {
             }
         });
         threadRecog.start();
+
+        // 연관주제어 버튼 눌렀을 때
+        Topic_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "연관주제어 버튼 눌렀을 때", Toast.LENGTH_LONG).show();
+                Thread threadRecog = new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            // 연관 주제어 분석
+                            Topic_anal(data_string);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                threadRecog.start();
+            }
+        });
+
+
+        // 트렌드분석 버튼 눌렀을 때
+        Trend_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "트렌드분석 버튼 눌렀을 때", Toast.LENGTH_LONG).show();
+                Thread threadRecog = new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            // 트렌드 분석
+                            Trend_anal(data_string);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                threadRecog.start();
+            }
+        });
 
     }
 
@@ -76,7 +124,6 @@ public class Analysis_result extends AppCompatActivity {
                     JSONObject jsonObject2 = (JSONObject)jsonObject.get("return_object");
                     JSONArray memberArray = (JSONArray)jsonObject2.get("trends");
 
-                    Log.e("LOG", memberArray.toJSONString());
                     JSONObject lastmember = (JSONObject) memberArray.get(2);
                     JSONArray node = (JSONArray) lastmember.get("nodes");
 
@@ -84,7 +131,7 @@ public class Analysis_result extends AppCompatActivity {
                     for(int i=0 ; i < node.size(); i++){
                         JSONObject temp = (JSONObject) node.get(i);
                         String topic_result = (String) temp.get("name");
-                        Log.e("LOG", topic_result);
+                        Log.v("LOG", topic_result);
                     }
 
                 } catch (ParseException e) {
@@ -97,7 +144,49 @@ public class Analysis_result extends AppCompatActivity {
         catch (Exception e) {
             Log.e("LOG", e.toString());
         }
+    }
 
+    // 연관 주제어 분석
+    private void Trend_anal(String data_string) throws IOException, JSONException {
+        try{
+            /* set up */
+            URL url = new URL("http://api.adams.ai/datamixiApi/topictrend?key=3249915959609597769&target=blog&keyword=" + data_string + "&from=&to=&timeunit=month");
+            HttpURLConnection urlConn = (HttpURLConnection)url.openConnection();
+            urlConn.setRequestProperty("Accept", "application/json;charset=UTF-8");
+            urlConn.setRequestMethod("GET");
+
+            int responseCode = urlConn.getResponseCode();
+            BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+
+            String inputLine;
+            while((inputLine = br.readLine()) != null){
+                try {
+                    JSONParser jsonParser = new JSONParser();
+                    JSONObject jsonObject = (JSONObject)jsonParser.parse(inputLine);
+                    JSONObject jsonObject2 = (JSONObject)jsonObject.get("return_object");
+                    JSONArray memberArray = (JSONArray)jsonObject2.get("trends");
+
+                    Log.e("LOG", memberArray.toJSONString());
+                    JSONObject lastmember = (JSONObject) memberArray.get(2);
+                    JSONArray node = (JSONArray) lastmember.get("nodes");
+
+                    // 트렌드 가져오기
+                    for(int i=0 ; i < node.size(); i++){
+                        JSONObject temp = (JSONObject) node.get(i);
+                        String topic_result = (String) temp.get("name");
+                        Log.v("LOG", topic_result);
+                    }
+
+                } catch (ParseException e) {
+                    Log.e("LOG", e.toString());
+                }
+            }
+
+            br.close();
+        }
+        catch (Exception e) {
+            Log.e("LOG", e.toString());
+        }
     }
 
     // 뒤로가기 버튼 눌렀을 때

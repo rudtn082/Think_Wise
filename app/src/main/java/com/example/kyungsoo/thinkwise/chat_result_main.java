@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
@@ -38,6 +40,8 @@ public class chat_result_main extends AppCompatActivity {
     private Handler mHandler; // postDelayed사용을 위한 handler
     private ProgressDialog mProgressDialog; // 프로그레스바 변수
     String temp = null;
+    private int mProgressStatus = 0;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
