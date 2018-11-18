@@ -173,8 +173,8 @@ public class Analysis_result extends AppCompatActivity {
                     // 트렌드 가져오기
                     for(int i=0 ; i < node.size(); i++){
                         JSONObject temp = (JSONObject) node.get(i);
-                        String topic_result = (String) temp.get("name");
-                        Log.v("LOG", topic_result);
+                        String Trend_result = (String) temp.get("name");
+                        Log.v("LOG", Trend_result);
                     }
 
                 } catch (ParseException e) {
