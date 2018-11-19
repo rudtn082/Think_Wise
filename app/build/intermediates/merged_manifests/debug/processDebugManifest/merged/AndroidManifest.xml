@@ -18,7 +18,6 @@
         android:label="Think Wise"
         android:roundIcon="@mipmap/thinkwise_round"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity android:name="com.example.kyungsoo.thinkwise.MainActivity" >
             <intent-filter>

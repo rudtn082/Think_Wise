@@ -26,4 +26,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation files('libs/json-simple-1.1.1.jar')
+    implementation 'net.alhazmy13.wordcloud:library:0.2.0-beta'
 }
