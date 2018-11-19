@@ -1,164 +1,171 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:2:1-24:12
-INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:2:1-24:12
-INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:2:1-24:12
-INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:2:1-24:12
-MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\a2dd0ac4a5cab1ecc2aebbfdb9e3ed1b\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\14452ffdcc7d9d8dfe0849634a62e69b\AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\21255df8f18c47916dddf98d7deeab09\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\deeae7fbdd8698802b06918d22d06164\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\45fc2b932b4997fbe1de95e66d329ffb\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\6ddfe79f8cf5cd814fde0db9485a4fa1\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\1eb25083bfd3ba1d219520f9d32f5594\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:loader:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\d49a358da03ce1668d654921d7092a28\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:viewpager:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\371d1d676eaad5865c14e22007aebb79\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\6d9cf611e61ec9bf54a7710b9787b79f\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\a4949f912348c14a8b3d2fdca164055d\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\f498fb26dd7bcbd88501029dfe9bc327\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:customview:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\cbc0e1220dd6596e05dde51224d54fc9\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\82ed81ca52785d99e0c1067488f239a3\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\a5c9cd93ab393751c58dd1ed82f919fb\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\3c4f2ab9b59f3ad6d5b5d2698fefd14b\AndroidManifest.xml:17:1-24:12
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\3c8730936e1a955f31e7bbd71edf03c5\AndroidManifest.xml:17:1-25:12
-MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\13eeb92f1b924289ca19e779fbe125c4\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\0ffd178a788b89e361e705c9b76b87f1\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:documentfile:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\f0b442a1cddb414997073fac56f8249f\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\53f19407b593f8f25bbd98d341a0d8f8\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:print:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\e8f898e160c6719740ccfbfe71618715\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\9c2784b36e5701e9cbe9dbcb17db9676\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\d4661e0ffa2e77f7f8d28ef03901da6d\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\64dc3e54e31239df9714ab45c0af6667\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.core:runtime:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\6f71caecf6c4324c7426f500d27fb8b0\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:interpolator:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\4167d5ef9b3008a701b27ee223a1e509\AndroidManifest.xml:17:1-22:12
-INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:2:1-24:12
-INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:2:1-24:12
-INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:2:1-24:12
+ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:2:1-27:12
+MERGED from [net.alhazmy13.wordcloud:library:0.2.0-beta] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\library-0.2.0-beta.aar\f58645afd2af8b7c1e30c0aae982908e\AndroidManifest.xml:2:1-12:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\152b9ec72876046295bd074b200843ca\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\e1291e5050ef8cf3e966dbf5176f1aab\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\379457cdfcb1d5bde5ce5a36c7dede72\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\0b98d07fbcb700f75d1218583344e4be\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\313f7e821be96d1f32ae5ba572650880\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\5a89d2f26ff6ce79ac4aa1e3be8e6996\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\f6006ac7ec6523a84f6df80523636f43\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\9bddcf78a28c53a82f29e3500748f631\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\e51b4f1f6c9e8258480ef98a71ac4e09\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\0d374bfdcc59d08c792991376616bb17\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\021d5f51f722bcdf9560a2240c36204f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\58b54944173c346f45bc7b3245d8fbc2\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\cbdefc4cf30e2765337a7de11b10d8de\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\d0066e0cc87e7d0a43423d6e32ab06e5\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\5351e5bf5bb1922a803bd589bdc90bf1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\d98ccd326aa9861448b6a524940340f9\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\67345f51eef2b65a6e18aae1e90ce2ae\AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\e39f308d29d30fbfa31a9f554d764730\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\c548bc5c2a53104bc652f2915b71258d\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\05b66d66dd7ec4791699b3639a39c740\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\adb53a36d99a8c204d1cf75dbc7bfb54\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\b8b2f4cf180fb56b52978bc5ab72cd95\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\32dc2a9f7a1a649467a37f62b540f10f\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\e509c3b98b31e67f5c266a0d2bdf998c\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\93fcb9206361f0eb8e140096cf61f5f5\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\81c6bd19ceae34914ca9a508f0ff55bb\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\285a1595e59c94b8f598f0d764331fb5\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:2:1-27:12
 	package
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:3:5-45
-		INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
-		INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:3:5-45
+		INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:2:1-24:12
-		INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:2:1-27:12
+		INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:2:1-24:12
-		INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:2:1-27:12
+		INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:2:11-69
-application
-ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:5:5-22:19
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\14452ffdcc7d9d8dfe0849634a62e69b\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\14452ffdcc7d9d8dfe0849634a62e69b\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\3c4f2ab9b59f3ad6d5b5d2698fefd14b\AndroidManifest.xml:22:5-94
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\3c4f2ab9b59f3ad6d5b5d2698fefd14b\AndroidManifest.xml:22:5-94
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\3c8730936e1a955f31e7bbd71edf03c5\AndroidManifest.xml:22:5-23:19
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\3c8730936e1a955f31e7bbd71edf03c5\AndroidManifest.xml:22:5-23:19
-	android:appComponentFactory
-		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\3c4f2ab9b59f3ad6d5b5d2698fefd14b\AndroidManifest.xml:22:18-91
-	android:supportsRtl
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:10:9-35
-	android:label
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:8:9-35
-	android:roundIcon
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:9:9-52
-	android:icon
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:7:9-41
-	android:allowBackup
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:6:9-35
-	android:theme
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:11:9-40
-activity#com.example.kyungsoo.thinkwise.MainActivity
-ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:12:9-18:20
-	android:name
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:12:19-47
-intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:13:13-17:29
-action#android.intent.action.MAIN
-ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:14:17-69
-	android:name
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:14:25-66
-category#android.intent.category.LAUNCHER
-ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:16:17-77
-	android:name
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:16:27-74
-activity#com.example.kyungsoo.thinkwise.chat_result_main
-ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:19:9-21:52
-	android:screenOrientation
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:21:13-49
-	android:name
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:20:13-45
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:23:5-66
+ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:5:5-67
 	android:name
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml:23:22-64
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:5:22-64
+application
+ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:7:5-25:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\e1291e5050ef8cf3e966dbf5176f1aab\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\e1291e5050ef8cf3e966dbf5176f1aab\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\d98ccd326aa9861448b6a524940340f9\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\d98ccd326aa9861448b6a524940340f9\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\67345f51eef2b65a6e18aae1e90ce2ae\AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\67345f51eef2b65a6e18aae1e90ce2ae\AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\d98ccd326aa9861448b6a524940340f9\AndroidManifest.xml:22:18-91
+	android:supportsRtl
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:12:9-35
+	android:label
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:10:9-35
+	android:roundIcon
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:11:9-52
+	android:icon
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:9:9-41
+	android:allowBackup
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:8:9-35
+	android:theme
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:13:9-40
+activity#com.example.kyungsoo.thinkwise.MainActivity
+ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:14:9-20:20
+	android:name
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:14:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:15:13-19:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:16:17-69
+	android:name
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:16:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:18:17-77
+	android:name
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:18:27-74
+activity#com.example.kyungsoo.thinkwise.chat_result_main
+ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:21:9-23:52
+	android:screenOrientation
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:23:13-49
+	android:name
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:22:13-45
+activity#com.example.kyungsoo.thinkwise.Analysis_result
+ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:24:9-62
+	android:name
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml:24:19-50
 uses-sdk
-INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
-INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
-MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\a2dd0ac4a5cab1ecc2aebbfdb9e3ed1b\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\a2dd0ac4a5cab1ecc2aebbfdb9e3ed1b\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\14452ffdcc7d9d8dfe0849634a62e69b\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\14452ffdcc7d9d8dfe0849634a62e69b\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\21255df8f18c47916dddf98d7deeab09\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\21255df8f18c47916dddf98d7deeab09\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\deeae7fbdd8698802b06918d22d06164\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\deeae7fbdd8698802b06918d22d06164\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\45fc2b932b4997fbe1de95e66d329ffb\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\45fc2b932b4997fbe1de95e66d329ffb\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\6ddfe79f8cf5cd814fde0db9485a4fa1\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\6ddfe79f8cf5cd814fde0db9485a4fa1\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\1eb25083bfd3ba1d219520f9d32f5594\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\1eb25083bfd3ba1d219520f9d32f5594\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:loader:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\d49a358da03ce1668d654921d7092a28\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:loader:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\d49a358da03ce1668d654921d7092a28\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:viewpager:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\371d1d676eaad5865c14e22007aebb79\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:viewpager:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\371d1d676eaad5865c14e22007aebb79\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\6d9cf611e61ec9bf54a7710b9787b79f\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\6d9cf611e61ec9bf54a7710b9787b79f\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\a4949f912348c14a8b3d2fdca164055d\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\a4949f912348c14a8b3d2fdca164055d\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\f498fb26dd7bcbd88501029dfe9bc327\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\f498fb26dd7bcbd88501029dfe9bc327\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:customview:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\cbc0e1220dd6596e05dde51224d54fc9\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:customview:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\cbc0e1220dd6596e05dde51224d54fc9\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\82ed81ca52785d99e0c1067488f239a3\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\82ed81ca52785d99e0c1067488f239a3\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\a5c9cd93ab393751c58dd1ed82f919fb\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\a5c9cd93ab393751c58dd1ed82f919fb\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\3c4f2ab9b59f3ad6d5b5d2698fefd14b\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\3c4f2ab9b59f3ad6d5b5d2698fefd14b\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\3c8730936e1a955f31e7bbd71edf03c5\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\3c8730936e1a955f31e7bbd71edf03c5\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\13eeb92f1b924289ca19e779fbe125c4\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\13eeb92f1b924289ca19e779fbe125c4\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\0ffd178a788b89e361e705c9b76b87f1\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\0ffd178a788b89e361e705c9b76b87f1\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:documentfile:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\f0b442a1cddb414997073fac56f8249f\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:documentfile:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\f0b442a1cddb414997073fac56f8249f\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\53f19407b593f8f25bbd98d341a0d8f8\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\53f19407b593f8f25bbd98d341a0d8f8\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:print:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\e8f898e160c6719740ccfbfe71618715\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:print:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\e8f898e160c6719740ccfbfe71618715\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\9c2784b36e5701e9cbe9dbcb17db9676\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\9c2784b36e5701e9cbe9dbcb17db9676\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\d4661e0ffa2e77f7f8d28ef03901da6d\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\d4661e0ffa2e77f7f8d28ef03901da6d\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\64dc3e54e31239df9714ab45c0af6667\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\64dc3e54e31239df9714ab45c0af6667\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\6f71caecf6c4324c7426f500d27fb8b0\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.1] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\6f71caecf6c4324c7426f500d27fb8b0\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:interpolator:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\4167d5ef9b3008a701b27ee223a1e509\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:interpolator:28.0.0] C:\Users\경수\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\4167d5ef9b3008a701b27ee223a1e509\AndroidManifest.xml:20:5-44
-INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
-INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
+MERGED from [net.alhazmy13.wordcloud:library:0.2.0-beta] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\library-0.2.0-beta.aar\f58645afd2af8b7c1e30c0aae982908e\AndroidManifest.xml:8:5-10:41
+MERGED from [net.alhazmy13.wordcloud:library:0.2.0-beta] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\library-0.2.0-beta.aar\f58645afd2af8b7c1e30c0aae982908e\AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\152b9ec72876046295bd074b200843ca\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\152b9ec72876046295bd074b200843ca\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\e1291e5050ef8cf3e966dbf5176f1aab\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\e1291e5050ef8cf3e966dbf5176f1aab\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\379457cdfcb1d5bde5ce5a36c7dede72\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\379457cdfcb1d5bde5ce5a36c7dede72\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\0b98d07fbcb700f75d1218583344e4be\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\0b98d07fbcb700f75d1218583344e4be\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\313f7e821be96d1f32ae5ba572650880\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\313f7e821be96d1f32ae5ba572650880\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\5a89d2f26ff6ce79ac4aa1e3be8e6996\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\5a89d2f26ff6ce79ac4aa1e3be8e6996\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\f6006ac7ec6523a84f6df80523636f43\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\f6006ac7ec6523a84f6df80523636f43\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\9bddcf78a28c53a82f29e3500748f631\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\9bddcf78a28c53a82f29e3500748f631\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\e51b4f1f6c9e8258480ef98a71ac4e09\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\e51b4f1f6c9e8258480ef98a71ac4e09\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\0d374bfdcc59d08c792991376616bb17\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\0d374bfdcc59d08c792991376616bb17\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\021d5f51f722bcdf9560a2240c36204f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\021d5f51f722bcdf9560a2240c36204f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\58b54944173c346f45bc7b3245d8fbc2\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\58b54944173c346f45bc7b3245d8fbc2\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\cbdefc4cf30e2765337a7de11b10d8de\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\cbdefc4cf30e2765337a7de11b10d8de\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\d0066e0cc87e7d0a43423d6e32ab06e5\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\d0066e0cc87e7d0a43423d6e32ab06e5\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\5351e5bf5bb1922a803bd589bdc90bf1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\5351e5bf5bb1922a803bd589bdc90bf1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\d98ccd326aa9861448b6a524940340f9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\d98ccd326aa9861448b6a524940340f9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\67345f51eef2b65a6e18aae1e90ce2ae\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\67345f51eef2b65a6e18aae1e90ce2ae\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\e39f308d29d30fbfa31a9f554d764730\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\e39f308d29d30fbfa31a9f554d764730\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\c548bc5c2a53104bc652f2915b71258d\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\c548bc5c2a53104bc652f2915b71258d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\05b66d66dd7ec4791699b3639a39c740\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\05b66d66dd7ec4791699b3639a39c740\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\adb53a36d99a8c204d1cf75dbc7bfb54\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\adb53a36d99a8c204d1cf75dbc7bfb54\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\b8b2f4cf180fb56b52978bc5ab72cd95\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\b8b2f4cf180fb56b52978bc5ab72cd95\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\32dc2a9f7a1a649467a37f62b540f10f\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\32dc2a9f7a1a649467a37f62b540f10f\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\e509c3b98b31e67f5c266a0d2bdf998c\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\e509c3b98b31e67f5c266a0d2bdf998c\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\93fcb9206361f0eb8e140096cf61f5f5\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\93fcb9206361f0eb8e140096cf61f5f5\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\81c6bd19ceae34914ca9a508f0ff55bb\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\81c6bd19ceae34914ca9a508f0ff55bb\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\285a1595e59c94b8f598f0d764331fb5\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Toshiba\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\285a1595e59c94b8f598f0d764331fb5\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
-		INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
-		ADDED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
-		INJECTED from D:\AndroidStudioProjects\Think_Wise\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Toshiba\Desktop\minseok\cnuLecture\moblieProgramming\thinkWise\Think_Wise\app\src\main\AndroidManifest.xml

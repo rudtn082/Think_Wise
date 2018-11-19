@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kyungsoo.thinkwise">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/thinkwise"
@@ -19,6 +21,7 @@
         <activity
             android:name=".chat_result_main"
             android:screenOrientation="portrait" />
+        <activity android:name=".Analysis_result"></activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
 </manifest>

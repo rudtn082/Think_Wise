@@ -30,6 +30,7 @@
         <activity
             android:name="com.example.kyungsoo.thinkwise.chat_result_main"
             android:screenOrientation="portrait" />
+        <activity android:name="com.example.kyungsoo.thinkwise.Analysis_result" />
     </application>
 
 </manifest>
