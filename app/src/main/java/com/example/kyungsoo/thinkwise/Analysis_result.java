@@ -1,5 +1,14 @@
 package com.example.kyungsoo.thinkwise;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +30,9 @@ import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -143,6 +155,87 @@ public class Analysis_result extends AppCompatActivity {
             }
         });
 
+        Button button2 = (Button)findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View container;
+                container = getWindow().getDecorView();
+                container.buildDrawingCache();
+                Bitmap captureView = container.getDrawingCache();
+
+
+                try {
+                    boolean isGrantStorage = grantExternalStoragePermission();
+
+                    if(isGrantStorage){
+
+                        String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.ThinkWise";
+                        File file = new File(dir);
+
+                        // 일치하는 폴더가 없으면 생성
+                        if( !file.exists() ) {
+                            file.mkdirs();
+                        }
+
+                        FileOutputStream fos;
+                        try {
+                            fos = new FileOutputStream(dir + "/" + System.currentTimeMillis() + ".jpeg");
+                            captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                        } catch (FileNotFoundException e) {
+                            Log.e("LOG", e.toString());
+                        }
+
+                        Toast.makeText(getApplicationContext(), "저장을 완료 했습니다.", Toast.LENGTH_LONG).show();
+                        // 밑에 부터 공유인데, 나중에 버튼 만들면 분리하기!
+                        Uri uri = FileProvider.getUriForFile(getApplicationContext(), "com.bignerdranch.android.test.fileprovider", new File(dir+"/cpture.jpeg"));
+
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+
+                        intent.putExtra(Intent.EXTRA_STREAM, uri);
+                        intent.setType("image/+");
+                        startActivity(Intent.createChooser(intent, "분석 결과 공유"));
+                    }
+                } catch (Exception e) {
+                    Log.e("LOG", e.toString());
+                    Toast.makeText(getApplicationContext(), "저장을 실패 했습니다.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+    ////////퍼미션
+
+    private boolean grantExternalStoragePermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                Log.v("LOG","Permission is granted");
+                return true;
+            }else{
+                Log.v("LOG","Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+
+                return false;
+            }
+        }else{
+            Toast.makeText(this, "External Storage Permission is Grant", Toast.LENGTH_SHORT).show();
+            Log.d("LOG", "External Storage Permission is Grant ");
+            return true;
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                if (!(grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
+                    Toast.makeText(Analysis_result.this, "Permission denied to access your location.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 
     // 연관 주제어 분석
@@ -226,10 +319,6 @@ public class Analysis_result extends AppCompatActivity {
                         Log.v("LOG", String.valueOf(wcWeight.length));
                         Log.v("LOG", String.valueOf(node.size()));
                     }
-
-
-
-
                 } catch (ParseException e) {
                     Log.e("LOG", e.toString());
                 }

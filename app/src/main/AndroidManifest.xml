@@ -3,6 +3,7 @@
     package="com.example.kyungsoo.thinkwise">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -21,7 +22,21 @@
         <activity
             android:name=".chat_result_main"
             android:screenOrientation="portrait" />
-        <activity android:name=".Analysis_result"></activity>
+        <activity android:name=".Analysis_result" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.bignerdranch.android.test.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/filepaths" />
     </application>
 
 </manifest>

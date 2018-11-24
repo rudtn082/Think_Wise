@@ -682,6 +682,7 @@ id beginning
 id blocking
 id bottom
 id button
+id button2
 id buttonPanel
 id button_layout
 id center
@@ -1290,3 +1291,4 @@ styleable Toolbar android_gravity android_minHeight buttonGravity collapseConten
 styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewStubCompat android_id android_layout android_inflatedId
+xml filepaths
