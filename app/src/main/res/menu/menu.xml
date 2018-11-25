@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/save_image"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="분석 결과 저장" />
+    <item
+        android:id="@+id/image_share"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="분석 결과 공유" />
+</menu>

@@ -71,11 +71,5 @@
             android:layout_height="match_parent">
         </net.alhazmy13.wordcloud.WordCloudView>
     </LinearLayout>
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
-
 
 </android.support.constraint.ConstraintLayout>

@@ -1,12 +1,23 @@
 package com.example.kyungsoo.thinkwise;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +36,9 @@ import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -40,6 +54,10 @@ public class chat_result_main extends AppCompatActivity {
     private Handler mHandler; // postDelayed사용을 위한 handler
     private ProgressDialog mProgressDialog; // 프로그레스바 변수
     String temp = null;
+
+    // 이미지 저장에 사용 할 view, bitmap 변수
+    View container;
+    Bitmap captureView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,26 +269,138 @@ public class chat_result_main extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Log.i("LOG", "back pressed..");
+        Log.i("LOG", "Back Pressed..");
         finish();
     }
 
-    // toolbar의 뒤로가기 버튼 눌렀을 때
+    // 아이템을 선택했을 때
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:{
-                Log.i("LOG", "toolbar back pressed..");
+        switch (item.getItemId()) {
+            // toolbar의 뒤로가기 버튼 눌렀을 때
+            case android.R.id.home:
+                Log.i("LOG", "Back Pressed..");
                 finish();
-                return true;
-            }
+                break;
+            case R.id.save_image:
+                container = getWindow().getDecorView();
+                container.buildDrawingCache();
+                captureView = container.getDrawingCache();
+
+                try {
+                    // 퍼미션 확인
+                    boolean isGrantStorage = grantExternalStoragePermission();
+
+                    // 승인 시
+                    if (isGrantStorage) {
+                        String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.ThinkWise";
+                        File file = new File(dir);
+
+                        // 일치하는 폴더가 없으면 생성
+                        if (!file.exists()) {
+                            file.mkdirs();
+                        }
+
+                        FileOutputStream fos;
+                        try {
+                            fos = new FileOutputStream(dir + "/" + System.currentTimeMillis() + ".jpeg");
+                            captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                        } catch (FileNotFoundException e) {
+                            Log.e("LOG", e.toString());
+                        }
+
+                        Toast.makeText(getApplicationContext(), "저장을 완료 했습니다.", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    return super.onOptionsItemSelected(item);
+                } catch (Exception e) {
+                    Log.e("LOG", e.toString());
+                    Toast.makeText(getApplicationContext(), "저장을 실패 했습니다.", Toast.LENGTH_LONG).show();
+                }
+            case R.id.image_share:
+                container = getWindow().getDecorView();
+                container.buildDrawingCache();
+                captureView = container.getDrawingCache();
+
+                try {
+                    boolean isGrantStorage = grantExternalStoragePermission();
+
+                    if(isGrantStorage){
+
+                        String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.ThinkWise";
+                        File file = new File(dir);
+
+                        // 일치하는 폴더가 없으면 생성
+                        if( !file.exists() ) {
+                            file.mkdirs();
+                        }
+
+                        FileOutputStream fos;
+                        try {
+                            fos = new FileOutputStream(dir + "/temp.jpeg");
+                            captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                        } catch (FileNotFoundException e) {
+                            Log.e("LOG", e.toString());
+                        }
+
+                        Uri uri = FileProvider.getUriForFile(getApplicationContext(), "com.bignerdranch.android.test.fileprovider", new File(dir + "/temp.jpeg"));
+
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+
+                        intent.putExtra(Intent.EXTRA_STREAM, uri);
+                        intent.setType("image/+");
+                        startActivity(Intent.createChooser(intent, "분석 결과 공유"));
+                    }
+                } catch (Exception e) {
+                    Log.e("LOG", e.toString());
+                    Toast.makeText(getApplicationContext(), "이미지 저장을 실패 했습니다.", Toast.LENGTH_LONG).show();
+                }
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    private boolean grantExternalStoragePermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                Log.v("LOG","Permission is granted");
+                return true;
+            }else{
+                Log.v("LOG","Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+
+                return false;
+            }
+        }else{
+            Toast.makeText(this, "External Storage Permission is Grant", Toast.LENGTH_SHORT).show();
+            Log.d("LOG", "External Storage Permission is Grant ");
+            return true;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override
     protected void onDestroy() {
-        Log.i("LOG", "on Destroy - char_result_main");
+        Log.i("LOG", "On Destroy");
+
+        // 임시파일 삭제!
+        try {
+            String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.ThinkWise";
+            File file = new File(dir + "/temp.jpeg");
+
+            if( file.exists() ) {
+                file.delete();
+            }
+        } catch (Exception e) {
+            Log.e("LOG", e.toString());
+        }
         super.onDestroy();
     }
 }
