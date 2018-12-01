@@ -1,12 +1,15 @@
 package com.example.kyungsoo.thinkwise;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
@@ -48,6 +51,7 @@ public class Analysis_result extends AppCompatActivity {
     Button Topic_Button, Trend_Button;
     String data_string;
     WordCloudView wordCloud;
+    boolean stats = true; // 통계가 있는지 검사하기 위한 변수
 
     // after pasring wcText
     List<WordCloud> wcList;
@@ -76,85 +80,27 @@ public class Analysis_result extends AppCompatActivity {
 
         data_string = getIntent().getStringExtra("data_string");
 
-        // 연관 주제어 분석
-        Thread threadRecog = new Thread(new Runnable() {
-            public void run() {
-                try {
-                    Topic_anal(data_string);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        threadRecog.start();
+        TopicTask task = new TopicTask();
+        task.execute();
 
         // 연관주제어 버튼 눌렀을 때
         Topic_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "연관주제어 버튼 눌렀을 때", Toast.LENGTH_LONG).show();
-                Thread threadRecog = new Thread(new Runnable() {
-                    public void run() {
-                        try {
-                            // 연관 주제어 분석
-                            Topic_anal(data_string);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                threadRecog.start();
+                TopicTask task = new TopicTask();
+                task.execute();
             }
         });
-
 
         // 트렌드분석 버튼 눌렀을 때
         Trend_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "트렌드분석 버튼 눌렀을 때", Toast.LENGTH_LONG).show();
-                Thread threadRecog = new Thread(new Runnable() {
-                    public void run() {
-                        try {
-                            // 트렌드 분석
-                            Trend_anal(data_string);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                threadRecog.start();
-
-                // 워드 클라우딩 실행
-                do {
-                    try {
-                        // make word cloud
-                        wcList = new ArrayList<>();
-                        for (int i=0; i < wcData.length; i++){
-                            wcList.add(new WordCloud(wcData[i], wcWeight[i]));
-                            Log.v("LOG","1");
-                            wordCloud.setDataSet(wcList);
-                            Log.v("LOG","2");
-                            wordCloud.setSize(600,300);
-                            Log.v("LOG","3");
-                            wordCloud.setColors(ColorTemplate.MATERIAL_COLORS);
-                            Log.v("LOG","4");
-                            wordCloud.notifyDataSetChanged();  // update view
-                            Log.v("LOG","5");
-                        }
-                    } catch (Exception e) {
-                        Log.v("LOG", String.valueOf(e));
-                        e.printStackTrace();
-                    }
-                }while (threadRecog.getState() != Thread.State.TERMINATED);
+                TrendTask task = new TrendTask();
+                task.execute();
             }
         });
+
     }
 
     // 연관 주제어 분석
@@ -177,8 +123,13 @@ public class Analysis_result extends AppCompatActivity {
                     JSONObject jsonObject2 = (JSONObject)jsonObject.get("return_object");
                     JSONArray memberArray = (JSONArray)jsonObject2.get("trends");
 
-                    JSONObject lastmember = (JSONObject) memberArray.get(2);
+                    JSONObject lastmember = (JSONObject) memberArray.get(0);
                     JSONArray node = (JSONArray) lastmember.get("nodes");
+
+                    if(node.size() <= 1) {
+                        stats = false;
+                        return;
+                    } else stats = true;
 
                     // 연관 주제어 가져오기
                     for(int i=0 ; i < node.size(); i++){
@@ -220,23 +171,23 @@ public class Analysis_result extends AppCompatActivity {
                     JSONObject jsonObject2 = (JSONObject)jsonObject.get("return_object");
                     JSONArray memberArray = (JSONArray)jsonObject2.get("trends");
 
-                    Log.e("LOG", memberArray.toJSONString());
-                    JSONObject lastmember = (JSONObject) memberArray.get(2);
-                    JSONArray node = (JSONArray) lastmember.get("nodes");
+                    JSONObject firstmember = (JSONObject) memberArray.get(0);
+                    JSONArray node = (JSONArray) firstmember.get("nodes");
+
+                    if(node.size() <= 1) {
+                        stats = false;
+                        return;
+                    } else stats = true;
 
                     // 트렌드 가져오기
-                    wcWeight = new int[node.size()+3];
-                    wcData = new String[node.size()+3];
+                    wcWeight = new int[node.size()];
+                    wcData = new String[node.size()];
                     for(int i=0 ; i < node.size(); i++){
                         JSONObject temp = (JSONObject) node.get(i);
                         String Trend_result = (String) temp.get("name");
                         int Trend_result_weight = Integer.parseInt(String.valueOf(Math.round((Double) temp.get("weight"))));
                         wcData[i] = Trend_result;                           // word for wc
                         wcWeight[i] = Trend_result_weight;                  // weight for wc
-
-                        Log.v("LOG", Trend_result);
-                        Log.v("LOG", String.valueOf(wcWeight.length));
-                        Log.v("LOG", String.valueOf(node.size()));
                     }
                 } catch (ParseException e) {
                     Log.e("LOG", e.toString());
@@ -363,6 +314,102 @@ public class Analysis_result extends AppCompatActivity {
             Toast.makeText(this, "External Storage Permission is Grant", Toast.LENGTH_SHORT).show();
             Log.d("LOG", "External Storage Permission is Grant ");
             return true;
+        }
+    }
+
+    // 연관주제어 어싱크테스크
+    private class TopicTask extends AsyncTask<Void, Void, Void> {
+        ProgressDialog asyncDialog = new ProgressDialog(Analysis_result.this);
+
+        @Override
+        protected void onPreExecute() {
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.setMessage("연관 주제어를 분석중입니다....");
+            asyncDialog.setCancelable(false);
+
+            // show dialog
+            asyncDialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            try {
+                // 연관 주제어 분석
+                Topic_anal(data_string);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            if(stats == false) {
+                Toast.makeText(getApplicationContext(), "통계가 없습니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            asyncDialog.dismiss();
+
+        }
+    }
+
+    // 트렌드 어싱크테스크
+    private class TrendTask extends AsyncTask<Void, Void, Void> {
+        ProgressDialog asyncDialog = new ProgressDialog(Analysis_result.this);
+
+        @Override
+        protected void onPreExecute() {
+            asyncDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            asyncDialog.setMessage("트렌드를 분석중입니다....");
+            asyncDialog.setCancelable(false);
+
+            // show dialog
+            asyncDialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            try {
+                // 트렌드 분석
+                Trend_anal(data_string);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            if(stats == false) {
+                Toast.makeText(getApplicationContext(), "통계가 없습니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                // make word cloud
+                wcList = new ArrayList<>();
+                for (int i=0; i < wcData.length; i++){
+                    wcList.add(new WordCloud(wcData[i], wcWeight[i]));
+
+                    Log.e("LOG", String.valueOf(wcWeight[i]));
+                    wordCloud.setDataSet(wcList);
+                    wordCloud.setSize((wcWeight[i]+1)*140, (wcWeight[i]+1)*90);
+                    wordCloud.setColors(ColorTemplate.MATERIAL_COLORS);
+                }
+                wordCloud.notifyDataSetChanged();  // update view
+            } catch (Exception e) {
+                Log.v("LOG", e.toString());
+                e.printStackTrace();
+            } finally {
+                asyncDialog.dismiss();
+            }
         }
     }
 
