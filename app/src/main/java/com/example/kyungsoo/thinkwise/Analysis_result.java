@@ -349,6 +349,7 @@ public class Analysis_result extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             if(stats == false) {
                 Toast.makeText(getApplicationContext(), "통계가 없습니다.", Toast.LENGTH_SHORT).show();
+                asyncDialog.dismiss();
                 return;
             }
             asyncDialog.dismiss();
@@ -389,6 +390,7 @@ public class Analysis_result extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             if(stats == false) {
                 Toast.makeText(getApplicationContext(), "통계가 없습니다.", Toast.LENGTH_SHORT).show();
+                asyncDialog.dismiss();
                 return;
             }
 
