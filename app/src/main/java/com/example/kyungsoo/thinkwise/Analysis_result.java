@@ -5,11 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +22,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 
 import net.alhazmy13.wordcloud.ColorTemplate;
 import net.alhazmy13.wordcloud.WordCloud;
@@ -50,8 +57,11 @@ import java.util.List;
 public class Analysis_result extends AppCompatActivity {
     Button Topic_Button, Trend_Button;
     String data_string;
-    WordCloudView wordCloud;
+    WordCloudView wordCloud; // 워드클라우드
     boolean stats = true; // 통계가 있는지 검사하기 위한 변수
+    ArrayList<PieEntry> topic;
+    PieChart pieChart; // 파이차트
+    TopicTask task;
 
     // after pasring wcText
     List<WordCloud> wcList;
@@ -80,15 +90,19 @@ public class Analysis_result extends AppCompatActivity {
 
         data_string = getIntent().getStringExtra("data_string");
 
-        TopicTask task = new TopicTask();
+        task = new TopicTask();
         task.execute();
 
         // 연관주제어 버튼 눌렀을 때
         Topic_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TopicTask task = new TopicTask();
-                task.execute();
+                WordCloudView wordCloudView = (WordCloudView) findViewById(R.id.wordCloud);
+                wordCloudView.setVisibility(View.GONE);
+                PieChart pieChart = (PieChart) findViewById(R.id.piechart);
+                pieChart.setVisibility(View.VISIBLE);
+
+                pieChartGrid();
             }
         });
 
@@ -96,6 +110,11 @@ public class Analysis_result extends AppCompatActivity {
         Trend_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                WordCloudView wordCloudView = (WordCloudView) findViewById(R.id.wordCloud);
+                wordCloudView.setVisibility(View.VISIBLE);
+                PieChart pieChart = (PieChart) findViewById(R.id.piechart);
+                pieChart.setVisibility(View.GONE);
+
                 TrendTask task = new TrendTask();
                 task.execute();
             }
@@ -131,13 +150,19 @@ public class Analysis_result extends AppCompatActivity {
                         return;
                     } else stats = true;
 
+                    topic = new ArrayList<PieEntry>();
+
                     // 연관 주제어 가져오기
                     for(int i=0 ; i < node.size(); i++){
                         JSONObject temp = (JSONObject) node.get(i);
                         String topic_result = (String) temp.get("name");
-                        Log.v("LOG", topic_result);
-                    }
+                        double tempWeight = (double)temp.get("weight");
+                        tempWeight = (tempWeight*10)*(tempWeight*10)*(tempWeight*10)*(tempWeight*10)*(tempWeight*10)*(tempWeight*10)*(tempWeight*10)*(tempWeight*10);
 
+                        int Trend_result_weight = (int)Math.round(tempWeight);
+                        Log.e("LOG", String.valueOf(Trend_result_weight));
+                        topic.add(new PieEntry(Trend_result_weight,topic_result));
+                    }
                 } catch (ParseException e) {
                     Log.e("LOG", e.toString());
                 }
@@ -148,6 +173,38 @@ public class Analysis_result extends AppCompatActivity {
         catch (Exception e) {
             Log.e("LOG", e.toString());
         }
+    }
+
+    // 차트 생성
+    public void pieChartGrid() {
+        pieChart = (PieChart)findViewById(R.id.piechart);
+        pieChart.setUsePercentValues(true);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.setExtraOffsets(5,10,5,5);
+
+        pieChart.setDragDecelerationFrictionCoef(0.95f);
+
+        pieChart.setDrawHoleEnabled(false);
+        pieChart.setHoleColor(Color.WHITE);
+        pieChart.setTransparentCircleRadius(61f);
+
+        Description description = new Description();
+        description.setText("연관 주제어 분석결과"); //라벨
+        description.setTextSize(15);
+        pieChart.setDescription(description);
+
+        pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic); //애니메이션
+
+        PieDataSet dataSet = new PieDataSet(topic,"주제어");
+        dataSet.setSliceSpace(3f);
+        dataSet.setSelectionShift(5f);
+        dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        PieData data = new PieData((dataSet));
+        data.setValueTextSize(10f);
+        data.setValueTextColor(Color.YELLOW);
+
+        pieChart.setData(data);
+        pieChart.invalidate();
     }
 
     // 트렌드 분석
@@ -342,6 +399,7 @@ public class Analysis_result extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
             return null;
         }
 
@@ -353,7 +411,6 @@ public class Analysis_result extends AppCompatActivity {
                 return;
             }
             asyncDialog.dismiss();
-
         }
     }
 

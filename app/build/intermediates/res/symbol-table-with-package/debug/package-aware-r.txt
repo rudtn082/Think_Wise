@@ -630,6 +630,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable border
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -643,6 +644,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable read
+drawable selector
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
@@ -744,6 +746,7 @@ id pageTitle
 id parent
 id parentPanel
 id percent
+id piechart
 id progress_circular
 id progress_horizontal
 id radio

@@ -64,12 +64,27 @@
             </LinearLayout>
         </LinearLayout>
 
-        <net.alhazmy13.wordcloud.WordCloudView
-            android:id="@+id/wordCloud"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@android:color/white">
 
-        </net.alhazmy13.wordcloud.WordCloudView>
+            <net.alhazmy13.wordcloud.WordCloudView
+                android:id="@+id/wordCloud"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </net.alhazmy13.wordcloud.WordCloudView>
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/piechart">
+            </com.github.mikephil.charting.charts.PieChart>
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
