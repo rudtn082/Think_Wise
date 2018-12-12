@@ -3382,7 +3382,7 @@ public final class R {
     public static final int abc_textfield_search_default_mtrl_alpha=0x7f060051;
     public static final int abc_textfield_search_material=0x7f060052;
     public static final int abc_vector_test=0x7f060053;
-    public static final int border=0x7f060054;
+    public static final int arrow=0x7f060054;
     public static final int notification_action_background=0x7f060055;
     public static final int notification_bg=0x7f060056;
     public static final int notification_bg_low=0x7f060057;
@@ -3396,9 +3396,8 @@ public final class R {
     public static final int notification_tile_bg=0x7f06005f;
     public static final int notify_panel_notification_icon_bg=0x7f060060;
     public static final int read=0x7f060061;
-    public static final int selector=0x7f060062;
-    public static final int tooltip_frame_dark=0x7f060063;
-    public static final int tooltip_frame_light=0x7f060064;
+    public static final int tooltip_frame_dark=0x7f060062;
+    public static final int tooltip_frame_light=0x7f060063;
   }
   public static final class id {
     public static final int ALT=0x7f070000;
@@ -3607,10 +3606,11 @@ public final class R {
     public static final int notification_template_icon_group=0x7f090022;
     public static final int notification_template_part_chronometer=0x7f090023;
     public static final int notification_template_part_time=0x7f090024;
-    public static final int select_dialog_item_material=0x7f090025;
-    public static final int select_dialog_multichoice_material=0x7f090026;
-    public static final int select_dialog_singlechoice_material=0x7f090027;
-    public static final int support_simple_spinner_dropdown_item=0x7f090028;
+    public static final int popupwindow=0x7f090025;
+    public static final int select_dialog_item_material=0x7f090026;
+    public static final int select_dialog_multichoice_material=0x7f090027;
+    public static final int select_dialog_singlechoice_material=0x7f090028;
+    public static final int support_simple_spinner_dropdown_item=0x7f090029;
   }
   public static final class menu {
     public static final int menu=0x7f0a0000;

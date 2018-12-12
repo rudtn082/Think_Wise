@@ -16,12 +16,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.Toast;
+import android.view.WindowManager.LayoutParams;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -41,17 +44,14 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Analysis_result extends AppCompatActivity {
@@ -72,6 +72,10 @@ public class Analysis_result extends AppCompatActivity {
     View container;
     Bitmap captureView;
 
+    // 팝업 윈도우
+    private PopupWindow mPopupWindow;
+    private boolean Popup = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +93,8 @@ public class Analysis_result extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         data_string = getIntent().getStringExtra("data_string");
+        Popup = getIntent().getBooleanExtra("Popup", true);
+        Log.e("LOG", String.valueOf(Popup));
 
         task = new TopicTask();
         task.execute();
@@ -120,14 +126,39 @@ public class Analysis_result extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        if (hasFocus == true && Popup == true) {
+            // 가이드 화면(popupWindow)
+            View popupView = getLayoutInflater().inflate(R.layout.popupwindow, null);
+
+            mPopupWindow = new PopupWindow(popupView,
+                    LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            mPopupWindow.setAnimationStyle(-1); // 애니메이션 설정(-1:설정, 0:설정안함)
+
+            mPopupWindow.showAtLocation(popupView, Gravity.FILL, 0, 0);
+
+            popupView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mPopupWindow.dismiss();
+                    Popup = false;
+                }
+            });
+        }
     }
 
     // 연관 주제어 분석
     private void Topic_anal(String data_string) throws IOException, JSONException {
-        try{
+        try {
             /* set up */
             URL url = new URL("http://api.adams.ai/datamixiApi/deeptopicrankTrend?key=3249915959609597769&target=blog&keyword=" + data_string);
-            HttpURLConnection urlConn = (HttpURLConnection)url.openConnection();
+            HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
             urlConn.setRequestProperty("Accept", "application/json;charset=UTF-8");
             urlConn.setRequestMethod("GET");
 
@@ -135,17 +166,17 @@ public class Analysis_result extends AppCompatActivity {
             BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
 
             String inputLine;
-            while((inputLine = br.readLine()) != null){
+            while ((inputLine = br.readLine()) != null) {
                 try {
                     JSONParser jsonParser = new JSONParser();
-                    JSONObject jsonObject = (JSONObject)jsonParser.parse(inputLine);
-                    JSONObject jsonObject2 = (JSONObject)jsonObject.get("return_object");
-                    JSONArray memberArray = (JSONArray)jsonObject2.get("trends");
+                    JSONObject jsonObject = (JSONObject) jsonParser.parse(inputLine);
+                    JSONObject jsonObject2 = (JSONObject) jsonObject.get("return_object");
+                    JSONArray memberArray = (JSONArray) jsonObject2.get("trends");
 
                     JSONObject lastmember = (JSONObject) memberArray.get(0);
                     JSONArray node = (JSONArray) lastmember.get("nodes");
 
-                    if(node.size() <= 1) {
+                    if (node.size() <= 1) {
                         stats = false;
                         return;
                     } else stats = true;
@@ -153,67 +184,76 @@ public class Analysis_result extends AppCompatActivity {
                     topic = new ArrayList<PieEntry>();
 
                     // 연관 주제어 가져오기
-                    for(int i=0 ; i < node.size(); i++){
+                    for (int i = 0; i < node.size(); i++) {
                         JSONObject temp = (JSONObject) node.get(i);
                         String topic_result = (String) temp.get("name");
-                        double tempWeight = (double)temp.get("weight");
-                        tempWeight = (tempWeight*10)*(tempWeight*10)*(tempWeight*10)*(tempWeight*10)*(tempWeight*10)*(tempWeight*10)*(tempWeight*10)*(tempWeight*10);
+                        double tempWeight = (double) temp.get("weight");
+                        tempWeight = (tempWeight * 10) * (tempWeight * 10) * (tempWeight * 10) * (tempWeight * 10) * (tempWeight * 10) * (tempWeight * 10) * (tempWeight * 10) * (tempWeight * 10);
 
-                        int Trend_result_weight = (int)Math.round(tempWeight);
+                        int Trend_result_weight = (int) Math.round(tempWeight);
                         Log.e("LOG", String.valueOf(Trend_result_weight));
-                        topic.add(new PieEntry(Trend_result_weight,topic_result));
+                        topic.add(new PieEntry(Trend_result_weight, topic_result));
                     }
                 } catch (ParseException e) {
                     Log.e("LOG", e.toString());
+                    Toast.makeText(getApplicationContext(), "키워드를 다시 선택해주세요.", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
 
             br.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Log.e("LOG", e.toString());
+            Toast.makeText(getApplicationContext(), "키워드를 다시 선택해주세요.", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 
     // 차트 생성
     public void pieChartGrid() {
-        pieChart = (PieChart)findViewById(R.id.piechart);
-        pieChart.setUsePercentValues(true);
-        pieChart.getDescription().setEnabled(false);
-        pieChart.setExtraOffsets(5,10,5,5);
+        try {
+            pieChart = (PieChart) findViewById(R.id.piechart);
+            pieChart.setUsePercentValues(true);
+            pieChart.getDescription().setEnabled(false);
+            pieChart.setExtraOffsets(5, 10, 5, 5);
 
-        pieChart.setDragDecelerationFrictionCoef(0.95f);
+            pieChart.setDragDecelerationFrictionCoef(0.95f);
 
-        pieChart.setDrawHoleEnabled(false);
-        pieChart.setHoleColor(Color.WHITE);
-        pieChart.setTransparentCircleRadius(61f);
+            pieChart.setDrawHoleEnabled(false);
+            pieChart.setHoleColor(Color.WHITE);
+            pieChart.setTransparentCircleRadius(61f);
 
-        Description description = new Description();
-        description.setText("연관 주제어 분석결과"); //라벨
-        description.setTextSize(15);
-        pieChart.setDescription(description);
+            Description description = new Description();
+            description.setText("연관 주제어 분석결과"); //라벨
+            description.setTextSize(15);
+            pieChart.setDescription(description);
 
-        pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic); //애니메이션
+            pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic); //애니메이션
 
-        PieDataSet dataSet = new PieDataSet(topic,"주제어");
-        dataSet.setSliceSpace(3f);
-        dataSet.setSelectionShift(5f);
-        dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-        PieData data = new PieData((dataSet));
-        data.setValueTextSize(10f);
-        data.setValueTextColor(Color.YELLOW);
+            PieDataSet dataSet = new PieDataSet(topic, "주제어");
+            dataSet.setSliceSpace(3f);
+            dataSet.setSelectionShift(5f);
+            dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+            PieData data = new PieData((dataSet));
+            data.setValueTextSize(10f);
+            data.setValueTextColor(Color.YELLOW);
 
-        pieChart.setData(data);
-        pieChart.invalidate();
+            pieChart.setData(data);
+            pieChart.invalidate();
+        } catch (Exception e) {
+            Log.e("LOG", e.toString());
+            Toast.makeText(getApplicationContext(), "키워드를 다시 선택해주세요.", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
     // 트렌드 분석
     private void Trend_anal(final String data_string) throws IOException, JSONException {
-        try{
+        try {
             // word cloud set up
             /* set up */
             URL url = new URL("http://api.adams.ai/datamixiApi/topictrend?key=3249915959609597769&target=blog&keyword=" + data_string + "&from=&to=&timeunit=month");
-            HttpURLConnection urlConn = (HttpURLConnection)url.openConnection();
+            HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
             urlConn.setRequestProperty("Accept", "application/json;charset=UTF-8");
             urlConn.setRequestMethod("GET");
 
@@ -221,17 +261,17 @@ public class Analysis_result extends AppCompatActivity {
             BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
 
             String inputLine;
-            while((inputLine = br.readLine()) != null){
+            while ((inputLine = br.readLine()) != null) {
                 try {
                     JSONParser jsonParser = new JSONParser();
-                    JSONObject jsonObject = (JSONObject)jsonParser.parse(inputLine);
-                    JSONObject jsonObject2 = (JSONObject)jsonObject.get("return_object");
-                    JSONArray memberArray = (JSONArray)jsonObject2.get("trends");
+                    JSONObject jsonObject = (JSONObject) jsonParser.parse(inputLine);
+                    JSONObject jsonObject2 = (JSONObject) jsonObject.get("return_object");
+                    JSONArray memberArray = (JSONArray) jsonObject2.get("trends");
 
                     JSONObject firstmember = (JSONObject) memberArray.get(0);
                     JSONArray node = (JSONArray) firstmember.get("nodes");
 
-                    if(node.size() <= 1) {
+                    if (node.size() <= 1) {
                         stats = false;
                         return;
                     } else stats = true;
@@ -239,7 +279,7 @@ public class Analysis_result extends AppCompatActivity {
                     // 트렌드 가져오기
                     wcWeight = new int[node.size()];
                     wcData = new String[node.size()];
-                    for(int i=0 ; i < node.size(); i++){
+                    for (int i = 0; i < node.size(); i++) {
                         JSONObject temp = (JSONObject) node.get(i);
                         String Trend_result = (String) temp.get("name");
                         int Trend_result_weight = Integer.parseInt(String.valueOf(Math.round((Double) temp.get("weight"))));
@@ -248,16 +288,18 @@ public class Analysis_result extends AppCompatActivity {
                     }
                 } catch (ParseException e) {
                     Log.e("LOG", e.toString());
+                    Toast.makeText(getApplicationContext(), "키워드를 다시 선택해주세요.", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
 
             br.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Log.e("LOG", e.toString());
+            Toast.makeText(getApplicationContext(), "키워드를 다시 선택해주세요.", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
-
 
 
     // 뒤로가기 버튼 눌렀을 때
@@ -320,13 +362,13 @@ public class Analysis_result extends AppCompatActivity {
                 try {
                     boolean isGrantStorage = grantExternalStoragePermission();
 
-                    if(isGrantStorage){
+                    if (isGrantStorage) {
 
                         String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.ThinkWise";
                         File file = new File(dir);
 
                         // 일치하는 폴더가 없으면 생성
-                        if( !file.exists() ) {
+                        if (!file.exists()) {
                             file.mkdirs();
                         }
 
@@ -359,15 +401,15 @@ public class Analysis_result extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23) {
 
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                Log.v("LOG","Permission is granted");
+                Log.v("LOG", "Permission is granted");
                 return true;
-            }else{
-                Log.v("LOG","Permission is revoked");
+            } else {
+                Log.v("LOG", "Permission is revoked");
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
 
                 return false;
             }
-        }else{
+        } else {
             Toast.makeText(this, "External Storage Permission is Grant", Toast.LENGTH_SHORT).show();
             Log.d("LOG", "External Storage Permission is Grant ");
             return true;
@@ -405,7 +447,7 @@ public class Analysis_result extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            if(stats == false) {
+            if (stats == false) {
                 Toast.makeText(getApplicationContext(), "통계가 없습니다.", Toast.LENGTH_SHORT).show();
                 asyncDialog.dismiss();
                 return;
@@ -445,7 +487,7 @@ public class Analysis_result extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            if(stats == false) {
+            if (stats == false) {
                 Toast.makeText(getApplicationContext(), "통계가 없습니다.", Toast.LENGTH_SHORT).show();
                 asyncDialog.dismiss();
                 return;
@@ -454,12 +496,12 @@ public class Analysis_result extends AppCompatActivity {
             try {
                 // make word cloud
                 wcList = new ArrayList<>();
-                for (int i=0; i < wcData.length; i++){
+                for (int i = 0; i < wcData.length; i++) {
                     wcList.add(new WordCloud(wcData[i], wcWeight[i]));
 
                     Log.e("LOG", String.valueOf(wcWeight[i]));
                     wordCloud.setDataSet(wcList);
-                    wordCloud.setSize((wcWeight[i]+1)*140, (wcWeight[i]+1)*90);
+                    wordCloud.setSize((wcWeight[i] + 1) * 140, (wcWeight[i] + 1) * 90);
                     wordCloud.setColors(ColorTemplate.MATERIAL_COLORS);
                 }
                 wordCloud.notifyDataSetChanged();  // update view
@@ -488,7 +530,7 @@ public class Analysis_result extends AppCompatActivity {
             String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.ThinkWise";
             File file = new File(dir + "/temp.jpeg");
 
-            if( file.exists() ) {
+            if (file.exists()) {
                 file.delete();
             }
         } catch (Exception e) {

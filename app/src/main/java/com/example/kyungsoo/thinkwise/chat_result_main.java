@@ -44,7 +44,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class chat_result_main extends AppCompatActivity {
-    ArrayList<HashMap<String,String>> LIST_MENU; // 리스트 뷰 변수
+    ArrayList<HashMap<String, String>> LIST_MENU; // 리스트 뷰 변수
     ListView listview; // 리스트뷰
     SimpleAdapter adapter; // 리스트뷰 어댑터
     String temp = null;
@@ -52,6 +52,9 @@ public class chat_result_main extends AppCompatActivity {
     // 이미지 저장에 사용 할 view, bitmap 변수
     View container;
     Bitmap captureView;
+
+    // 팝업윈도우 한 번만 출력하기 위한 변수
+    private boolean Popup = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +74,8 @@ public class chat_result_main extends AppCompatActivity {
         LIST_MENU = new ArrayList<HashMap<String, String>>();
 
         adapter = new SimpleAdapter(this, LIST_MENU, android.R.layout.simple_list_item_2,
-                new String[] {"item1", "item2"}, new int[] {android.R.id.text1, android.R.id.text2});
-        listview = (ListView)findViewById(R.id.listview1) ; // 리스트뷰
+                new String[]{"item1", "item2"}, new int[]{android.R.id.text1, android.R.id.text2});
+        listview = (ListView) findViewById(R.id.listview1); // 리스트뷰
         listview.setAdapter(adapter);
 
         // ListView 객체의 특정 아이템 클릭시 처리 추가
@@ -86,7 +89,8 @@ public class chat_result_main extends AppCompatActivity {
 
                 Intent Analysis_result = new Intent(getApplicationContext(), com.example.kyungsoo.thinkwise.Analysis_result.class);
                 Analysis_result.putExtra("data_string", selected_item);
-                startActivity(Analysis_result);
+                Analysis_result.putExtra("Popup", Popup);
+                startActivityForResult(Analysis_result, 1);
             }
         });
     }
@@ -151,13 +155,13 @@ public class chat_result_main extends AppCompatActivity {
                 try {
                     boolean isGrantStorage = grantExternalStoragePermission();
 
-                    if(isGrantStorage){
+                    if (isGrantStorage) {
 
                         String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.ThinkWise";
                         File file = new File(dir);
 
                         // 일치하는 폴더가 없으면 생성
-                        if( !file.exists() ) {
+                        if (!file.exists()) {
                             file.mkdirs();
                         }
 
@@ -190,15 +194,15 @@ public class chat_result_main extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23) {
 
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                Log.v("LOG","Permission is granted");
+                Log.v("LOG", "Permission is granted");
                 return true;
-            }else{
-                Log.v("LOG","Permission is revoked");
+            } else {
+                Log.v("LOG", "Permission is revoked");
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
 
                 return false;
             }
-        }else{
+        } else {
             Toast.makeText(this, "External Storage Permission is Grant", Toast.LENGTH_SHORT).show();
             Log.d("LOG", "External Storage Permission is Grant ");
             return true;
@@ -224,15 +228,12 @@ public class chat_result_main extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... arg0) {
             try {
-                    try
-                    {
-                        chat_split();
-                    }
-                    catch ( Exception e )
-                    {
-                        Log.e("LOG",e.toString());
-                        Toast.makeText(getApplicationContext(), "내용분석 오류", Toast.LENGTH_LONG).show();
-                    }
+                try {
+                    chat_split();
+                } catch (Exception e) {
+                    Log.e("LOG", e.toString());
+                    Toast.makeText(getApplicationContext(), "내용분석 오류", Toast.LENGTH_LONG).show();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -244,7 +245,7 @@ public class chat_result_main extends AppCompatActivity {
             asyncDialog.dismiss();
 
             // 카카오톡 대화내용이 아닐 경우 예외처리 //
-            if(iskakao == false) {
+            if (iskakao == false) {
                 Toast.makeText(getApplicationContext(), "카카오톡 대화내용 파일이 아닙니다.", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -266,7 +267,7 @@ public class chat_result_main extends AppCompatActivity {
             // 분석이 끝나면 ListView를 업데이트
             do {
                 adapter.notifyDataSetChanged();
-            }while (threadRecog.getState() != Thread.State.TERMINATED);
+            } while (threadRecog.getState() != Thread.State.TERMINATED);
 
             super.onPostExecute(result);
         }
@@ -281,28 +282,28 @@ public class chat_result_main extends AppCompatActivity {
             // 카카오톡 대화내용이 아닐 경우 예외처리 //
             iskakao = false;
             String[] tempSplitWs = split_line[0].split("\\s");
-            for(int j = 0; j<tempSplitWs.length; j++) {
-                if(tempSplitWs[j].equals("카카오톡")) {
+            for (int j = 0; j < tempSplitWs.length; j++) {
+                if (tempSplitWs[j].equals("카카오톡")) {
                     iskakao = true;
                 }
             }
 
-            if(iskakao == false) return;
+            if (iskakao == false) return;
             // 카카오톡 대화내용이 아닐 경우 예외처리 //
 
             asyncDialog.setMax(split_line.length);
 
             int i;
             // 라인이 10만줄 이상일 때
-            if(split_line.length > 100000) {
+            if (split_line.length > 100000) {
                 // 단어로 split해서 대화 내용만 합치기
-                for(i = split_line.length-100000; i < split_line.length; i++) {
-                    if(split_line[i] == "") continue;
+                for (i = split_line.length - 100000; i < split_line.length; i++) {
+                    if (split_line[i] == "") continue;
                     String[] split_ws = split_line[i].split("\\s");
 
-                    if(split_ws.length < 7) continue;
+                    if (split_ws.length < 7) continue;
                     else {
-                        for(int j = 7; j < split_ws.length; j++) {
+                        for (int j = 7; j < split_ws.length; j++) {
                             whole_chat_content = whole_chat_content + split_ws[j] + "\n";
                         }
                     }
@@ -313,13 +314,13 @@ public class chat_result_main extends AppCompatActivity {
             //  라인이 10만줄 이하일 때
             else {
                 // 단어로 split해서 대화 내용만 합치기
-                for(i = 2; i < split_line.length; i++) {
-                    if(split_line[i] == "") continue;
+                for (i = 2; i < split_line.length; i++) {
+                    if (split_line[i] == "") continue;
                     String[] split_ws = split_line[i].split("\\s");
 
-                    if(split_ws.length < 7) continue;
+                    if (split_ws.length < 7) continue;
                     else {
-                        for(int j = 7; j < split_ws.length; j++) {
+                        for (int j = 7; j < split_ws.length; j++) {
                             whole_chat_content = whole_chat_content + split_ws[j] + "\n";
                         }
                     }
@@ -333,10 +334,10 @@ public class chat_result_main extends AppCompatActivity {
         public void lastPOST() throws IOException, JSONException {
             String input = "key=3249915959609597769&text=" + temp;
 
-            try{
+            try {
                 /* set up */
                 URL url = new URL("http://api.adams.ai/datamixiApi/keywordextract");
-                HttpURLConnection urlConn = (HttpURLConnection)url.openConnection();
+                HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
                 urlConn.setDoOutput(true);
                 urlConn.setDoInput(true);
                 urlConn.setRequestProperty("Accept", "application/json;charset=UTF-8");
@@ -353,37 +354,37 @@ public class chat_result_main extends AppCompatActivity {
                 if (urlConn.getResponseCode() == 200) {
                     // 성공시 처리
                     br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
-                }else{
+                } else {
                     // 실패시 처리
                     br = new BufferedReader(new InputStreamReader(urlConn.getErrorStream()));
                 }
                 String inputLine;
-                while((inputLine = br.readLine()) != null){
+                while ((inputLine = br.readLine()) != null) {
                     try {
                         JSONParser jsonParser = new JSONParser();
-                        JSONObject jsonObject = (JSONObject)jsonParser.parse(inputLine);
-                        JSONArray memberArray = (JSONArray)jsonObject.get("return_object");
+                        JSONObject jsonObject = (JSONObject) jsonParser.parse(inputLine);
+                        JSONArray memberArray = (JSONArray) jsonObject.get("return_object");
                         // 결과값이 20개 보다 많을 경우
-                        if(memberArray.size() > 20) {
-                            for(int i=0 ; i <= 20; i++){
+                        if (memberArray.size() > 20) {
+                            for (int i = 0; i <= 20; i++) {
                                 JSONObject tempObj = (JSONObject) memberArray.get(i);
                                 String[] tempstr = tempObj.get("term").toString().split("\\|");
 
-                                HashMap<String,String> item = new HashMap<>();
+                                HashMap<String, String> item = new HashMap<>();
                                 item.put("item1", tempstr[0]);
-                                item.put("item2", "빈도수 : " + tempstr[1].substring(0,5));
+                                item.put("item2", "빈도수 : " + tempstr[1].substring(0, 5));
                                 LIST_MENU.add(item);
                             }
                         }
                         // 결과값이 20개 보다 적을 경우
                         else {
-                            for(int i=0 ; i < memberArray.size(); i++){
+                            for (int i = 0; i < memberArray.size(); i++) {
                                 JSONObject tempObj = (JSONObject) memberArray.get(i);
                                 String[] tempstr = tempObj.get("term").toString().split("\\|");
 
-                                HashMap<String,String> item = new HashMap<>();
+                                HashMap<String, String> item = new HashMap<>();
                                 item.put("item1", tempstr[0]);
-                                item.put("item2", "빈도수 : " + tempstr[1].substring(0,5));
+                                item.put("item2", "빈도수 : " + tempstr[1].substring(0, 5));
                                 LIST_MENU.add(item);
                             }
                         }
@@ -392,8 +393,18 @@ public class chat_result_main extends AppCompatActivity {
                     }
                 }
                 br.close();
+            } catch (Exception e) {
+                Log.e("LOG", e.toString());
             }
-            catch (Exception e) {
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            try {
+                Popup = false;
+            } catch (Exception e) {
                 Log.e("LOG", e.toString());
             }
         }
@@ -415,7 +426,7 @@ public class chat_result_main extends AppCompatActivity {
             String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.ThinkWise";
             File file = new File(dir + "/temp.jpeg");
 
-            if( file.exists() ) {
+            if (file.exists()) {
                 file.delete();
             }
         } catch (Exception e) {
